@@ -27,8 +27,8 @@ function setup() {
 
 	//create helicopter
 	helicopterSprite=createSprite(width/2, 200, 10,10);
-	helicopterSprite.addImage(helicopterIMG)
-	helicopterSprite.scale=0.6
+	helicopterSprite.addImage(helicopterIMG);
+	helicopterSprite.scale=0.6;
 
 	//create ground
 	groundSprite=createSprite(width/2, height-35, width,10);
@@ -37,9 +37,8 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:3, isStatic:true});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:1, isStatic:true});
 	World.add(world, packageBody);
-	
 
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
@@ -59,8 +58,9 @@ function draw() {
   background(0);
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
+  packageSprite.x = helicopterSprite.x
+  packageSprite.collide(groundSprite);
   drawSprites();
- 
 }
 
 function keyPressed() {
